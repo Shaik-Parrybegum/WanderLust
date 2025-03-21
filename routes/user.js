@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true })
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
@@ -19,7 +19,7 @@ router
     .post(
         saveRedirectUrl,
         passport.authenticate("local", {
-            failureRedirect: '/login',
+            failureRedirect: '/users/login',
             failureFlash: true
         }),
         userController.login
